@@ -4,46 +4,19 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.dao.MysqlDAO;
 import com.example.dao.PostDAO;
-import com.example.domain.PostVO;
+import com.example.dao.UserDAO;
+
+
 
 @SpringBootTest
 public class MysqlTest {
 	@Autowired
-	MysqlDAO dao;
-	
-	@Autowired
-	PostDAO pdao;
-	
-//	@Test
-//	public void update() {
-//		PostVO vo =new PostVO();
-//		vo.setTitle("안녕하세요! 홍길동입니다.");
-//		vo.setBody("수정합니다");
-//		vo.setPid(4);
-//		pdao.update(vo);
-//	}
-	
-
-	
-//	@Test
-//	public void read() {
-//		pdao.read(1);
-//	}
+	UserDAO dao;
 	
 	@Test
-	public void delete() {
-		pdao.delete(3);
+	public void read() {
+		dao.read("blue");
 	}
 	
-	@Test
-	public void list() {
-		pdao.list();
-	}
-	
-	@Test
-	public void now() {
-		System.out.println("현재:" + dao.now());
-	}
 }

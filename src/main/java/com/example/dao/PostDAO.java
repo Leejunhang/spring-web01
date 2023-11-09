@@ -1,14 +1,12 @@
 package com.example.dao;
-
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import com.example.domain.PostVO;
 
 public interface PostDAO {
-	public List<HashMap<String, Object>> list();
+	public List<HashMap<String,Object>> list();
+	public HashMap<String,Object> read(int pid);
 	public void insert(PostVO vo);
-	public void update(PostVO vo);
-	public HashMap<String, Object> read(int pid);
 	public void delete(int pid);
+	public void update(PostVO vo);
 }

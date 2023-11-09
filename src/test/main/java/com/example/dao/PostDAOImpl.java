@@ -14,10 +14,20 @@ public class PostDAOImpl implements PostDAO{
 	@Autowired
 	SqlSession session;
 	String namespace="com.example.mapper.PostMapper";
-			
+	
 	@Override
 	public List<HashMap<String, Object>> list() {
 		return session.selectList(namespace + ".list");
+	}
+
+	@Override
+	public void insert(PostVO vo) {
+		session.insert(namespace + ".insert", vo);
+	}
+
+	@Override
+	public void update(PostVO vo) {
+		session.update(namespace + ".update", vo);
 	}
 
 	@Override
@@ -26,21 +36,11 @@ public class PostDAOImpl implements PostDAO{
 	}
 
 	@Override
-	public void insert(PostVO vo) {
-		session.insert(namespace + ".insert", vo);
-		
-	}
-
-	@Override
 	public void delete(int pid) {
 		session.delete(namespace + ".delete", pid);
-		
 	}
-
-	@Override
-	public void update(PostVO vo) {
-		session.update(namespace + ".update", vo);
-		
-	}
-
 }
+
+
+
+
