@@ -44,10 +44,25 @@
 		const phone=$(frm.phone).val();
 		const address1=$(frm.address1).val();
 		const address2=$(frm.address2).val();
+		
 		if(uid=="" || upass=="" || uname==""){
 			alert("아이디, 비밀번호, 이름을 꼭 입력하세요!");
 		}else if(check==false){
 			alert("아이디 중복체크을 하세요!");
+		}else{
+			if(confirm("회원 등록을 하실래요?")){
+				//회원등록
+				$.ajax({
+					type:"post",
+					url:"/users/insert",
+					data:JSON.stringify({uid, upass, uname, phone, address1, address2}),
+					contentType:"application/JSON",
+					success:function(){
+						alert("회원가입이 성공했습니다!");
+						location.href="/users/login"
+					}
+				})
+			}
 		}
 	});
 	
