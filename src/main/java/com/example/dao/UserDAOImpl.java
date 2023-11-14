@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.domain.UserVO;
 
@@ -25,18 +26,20 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public void update(UserVO vo) {
+	public void update(@RequestBody UserVO vo) {
 		session.update(namespace + ".update", vo);
+		
 	}
 
 	@Override
-	public void updatePhoto(UserVO vo) {
-		session.update(namespace + ".update_photo", vo);
+	public void photo(UserVO vo) {
+		session.update(namespace + ".photo", vo);
+		
 	}
 
 	@Override
-	public void updatePassword(UserVO vo) {
-		session.update(namespace + ".update_password", vo);
+	public void password(UserVO vo) {
+		session.update(namespace + ".password", vo);
 		
 	}
 

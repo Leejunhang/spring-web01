@@ -21,22 +21,26 @@ public class UserRestController {
 	@Autowired
 	UserDAO dao;
 	
-	//사진업로드 컨트롤러
-	@PostMapping("/photo")
-	public void photo(String uid, MultipartHttpServletRequest multi)throws Exception {
+	@PostMapping("/insert")
+	public void insert(@RequestBody UserVO vo) {
+		dao.insert(vo);
+	}
+	
+	@PostMapping("/password")
+	public void password(@RequestBody UserVO vo) {
+		dao.password(vo);
+	}
+	
+	@PostMapping("/upload")
+	public void upload(String uid, MultipartHttpServletRequest multi)throws Exception {
 		MultipartFile file=multi.getFile("file");
 		String filePath="/upload/photo/";
 		String fileName=System.currentTimeMillis() + ".jpg";
 		file.transferTo(new File("c:" + filePath + fileName));
 		UserVO vo=new UserVO();
 		vo.setUid(uid);
-		vo.setPhoto(filePath + fileName);
-		dao.updatePhoto(vo);
-	}
-	
-	@PostMapping("/password")
-	public void password(@RequestBody UserVO vo) {
-		dao.updatePassword(vo);
+		vo.setPhoto(filePath + fileName); 
+		dao.photo(vo);
 	}
 	
 	@PostMapping("/update")
@@ -49,12 +53,7 @@ public class UserRestController {
 	public HashMap<String,Object> read(String uid){
 		return dao.read(uid);
 	}
-	
-	@PostMapping("/insert")
-	public void insert(@RequestBody UserVO vo) {
-		dao.insert(vo);
-	}
-	
+
 	@PostMapping("/login")
 	public int login(@RequestBody UserVO vo) {
 		int result=0;

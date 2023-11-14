@@ -1,10 +1,11 @@
-<div class="my-5">
+<div class="my-5" xmlns:th="http://www.thymeleaf.org">
 	<h1 class="text-center mb-5">게시글 정보</h1>
 	<div class="text-end mb-2">
 		<button id="btn-update" class="btn btn-sm btn-success">수정</button>
 		<button id="btn-delete" class="btn btn-sm btn-danger">삭제</button>
 	</div>
 	<div id="div_posts"></div>
+	<div th:include="posts/comments.html"></div>
 </div>
 <script id="temp_posts" type="x-handlebars-template">
 	<div class="card">

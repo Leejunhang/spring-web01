@@ -7,19 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/users")
-public class UserController {
-	
-	@GetMapping("/password")
-	public String password(Model model) {
-		model.addAttribute("pageName", "users/password.html");
-		return "home";
-	}
-	
-	@GetMapping("/insert")
-	public String insert(Model model) {
-		model.addAttribute("pageName", "users/insert.html");
-		return "home";
-	}
+public class UserController {	
 	
 	@GetMapping("/login")
 	public String login(Model model) {
@@ -36,6 +24,19 @@ public class UserController {
 	@GetMapping("/update")
 	public String update(Model model) {
 		model.addAttribute("pageName", "users/update.html");
-		return "home.html";
+		return "home";
+	}
+	
+	@GetMapping("/password")
+	public String password(Model model) {
+		model.addAttribute("pageName", "users/password.html");
+		return "home";
+	}
+	
+	@GetMapping("/insert")
+	public String insert(Model model) {
+		model.addAttribute("pageName", "users/insert.html");
+		return "home";
 	}
 }
+
