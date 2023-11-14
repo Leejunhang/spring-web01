@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.PostMapper">
+	<update id="viewcnt">
+		update posts
+		set viewcnt=viewcnt + 1
+		where pid=#{pid}
+	</update>
+	<update id="comcnt">
+		update posts
+		set comcnt=comcnt + #{cnt}
+		where pid=#{pid}
+	</update>
     <select id="list" resultType="hashmap">
         select p.*, date_format(p.regdate, '%Y-%m-%d %T') as fmtdate, u.uname
 		from posts as p, users as u

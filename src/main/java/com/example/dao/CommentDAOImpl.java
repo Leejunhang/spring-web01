@@ -1,12 +1,13 @@
 package com.example.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import com.example.domain.CommentVO;
 
 @Repository
 public class CommentDAOImpl implements CommentDAO{
@@ -26,5 +27,26 @@ public class CommentDAOImpl implements CommentDAO{
 	@Override
 	public int total(int pid) {
 		return session.selectOne(namespace + ".total", pid);
+	}
+
+	@Override
+	public void insert(CommentVO vo) {
+		session.insert(namespace + ".insert", vo);
+	}
+
+	@Override
+	public void delete(int cid) {
+		session.delete(namespace + ".delete", cid);
+	}
+
+	@Override
+	public void update(CommentVO vo) {
+		session.update(namespace + ".update", vo);
+		
+	}
+
+	@Override
+	public CommentVO read(int cid) {
+		return session.selectOne(namespace + ".read", cid);
 	}
 }

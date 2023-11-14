@@ -7,7 +7,25 @@ public class PostVO extends UserVO {
 	private String body;
 	private String writer;
 	private Date regdate;
+	private int viewcnt;
+	private int comcnt;
 	
+	public int getComcnt() {
+		return comcnt;
+	}
+
+	public void setComcnt(int comcnt) {
+		this.comcnt = comcnt;
+	}
+
+	public int getViewcnt() {
+		return viewcnt;
+	}
+
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
+	}
+
 	public int getPid() {
 	return pid;
 	}
@@ -39,11 +57,11 @@ public class PostVO extends UserVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "PostVO [pid=" + pid + ", title=" + title + ", body=" + body + ", writer=" + writer + ", regdate="
-				+ regdate + "]";
+				+ regdate + ", viewcnt=" + viewcnt + ", comcnt=" + comcnt + "]";
 	}
 	
 	

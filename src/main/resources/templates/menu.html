@@ -28,6 +28,9 @@
   </div>
 </nav>
 <script>
+	if(getCookie("uid")){ 
+		sessionStorage.setItem("uid", getCookie("uid"));
+	}
 	
 	if(sessionStorage.getItem("uid")) {
 		$("#login, #mypage, #logout").toggle();
