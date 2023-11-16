@@ -30,6 +30,19 @@
 	</div>
 </script>
 
+<script id="temp_enroll" type="x-handlebars-template">
+	<table class="table">
+		{{#each .}}
+		<tr>
+			<td>{{sname}}({{scode}})</td>
+			<td>{{dept}} ({{year}})</td>
+			<td>{{edate}}</td>
+			<td>{{grade}}</td>
+		</tr>	
+		{{/each}}
+	</table>	
+</script>
+
 <script>
 	const lcode="[[${param.lcode}]]";
 	$.ajax({
@@ -41,5 +54,15 @@
 			const temp = Handlebars.compile($("#temp_cou").html());
 			$("#div_cou").html(temp(data));		
 		}
-	})
+	});
+	
+	$.ajax({
+		type:"get",
+		url:"/cou/enroll.json",
+		data:{lcode},
+		success:function(data){
+			const temp = Handlebars.compile($("#temp_enroll").html());
+			$("#div_enroll").html(temp(data));				
+		}
+	});
 </script>

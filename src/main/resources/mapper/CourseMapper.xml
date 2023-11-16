@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.CourseMapper">
+	<select id="enroll" resultType="hashmap">
+		select *
+		from cou_enroll
+		where lcode=#{lcode}
+	</select>
     <select id="read" resultType="hashmap">
         select *
         from view_cou
