@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/stu")
-public class StuController {
+@RequestMapping("/cou")
+public class CouController {
 	
 	@GetMapping("/list")
 	public String list(Model model) {
-		model.addAttribute("pageName", "stu/list");
+		model.addAttribute("pageName", "cou/list");
 		return "home";
 	}
 	
 	@GetMapping("/read")
 	public String read(Model model) {
-		model.addAttribute("pageName", "stu/read");
+		model.addAttribute("pageName", "cou/read");
 		return "home";
 	}
 }

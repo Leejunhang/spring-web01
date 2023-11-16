@@ -6,18 +6,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.dao.PostDAO;
 import com.example.dao.ProDAO;
+import com.example.dao.StuDAO;
 import com.example.dao.UserDAO;
+import com.example.domain.QueryVO;
 
 
 
 @SpringBootTest
 public class MysqlTest {
 	@Autowired
-	ProDAO dao;
+	StuDAO dao;
 	
 	@Test
 	public void list() {
-		dao.list();
+	    QueryVO vo=new QueryVO();
+	     vo.setPage(2);
+	     vo.setSize(3);
+	     dao.list(vo);
 	}
 	
 }
