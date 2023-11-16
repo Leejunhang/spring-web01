@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.dao.PostDAO;
+import com.example.dao.ProDAO;
 import com.example.dao.UserDAO;
 
 
@@ -12,11 +13,11 @@ import com.example.dao.UserDAO;
 @SpringBootTest
 public class MysqlTest {
 	@Autowired
-	UserDAO dao;
+	ProDAO dao;
 	
 	@Test
-	public void read() {
-		dao.read("blue");
+	public void list() {
+		dao.list();
 	}
 	
 }
