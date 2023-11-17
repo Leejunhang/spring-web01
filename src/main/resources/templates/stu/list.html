@@ -21,7 +21,7 @@
 </div>
 <script id="temp_stu" type="x-handlebars-template">
 	<table class="table">
-		{{#each .}}
+		{{#each list}}
 		<tr>
 			<td>{{scode}}</td>
 			<td><a href="/stu/read?scode={{scode}}">{{sname}}</a><td>
@@ -36,51 +36,38 @@
 <script>
 	let page=1;
 	const size=3;
-	getTotal();
+	let total=0;
+	getList();
 	
 	$(frm).on("submit", function(e){
 		e.preventDefault();
-		page=1;
-		getTotal();	
+		getList();	
 	});
 	
-	function getTotal(){
-		const query=$(frm.query).val();
-		const key=$(frm.key).val();
-		$.ajax({
-			type:"get",
-			url:"/stu/total",
-			data:{query, key},
-			success:function(data){
-				$("#total").html(`검색수:${data}건`);
-				if(data>size){
-					$("#pagination").show();
-					const totalPages = Math.ceil(data/size);
-                	$("#pagination").twbsPagination("changeTotalPages", totalPages, page)
-                }else{
-					$("#pagination").hide();
-					getList();
-				}
-			}
-		})
-	}
-	
 	function getList(){
-		const query=$(frm.query).val();
 		const key=$(frm.key).val();
+		const query=$(frm.query).val();
 		$.ajax({
 			type:"get",
 			url:"/stu/list.json",
-			data:{size, page, key, query},
+			data:{page, size, key, query},
 			success:function(data){
-				if(data==0) {
-					$("#div_stu").html("<h3 class='text-center my-5'>검색자료가 존재하지않습니다.</h3>");	
+				$("#total").html(`검색수: ${data.total}건`);
+				if(data.total==0){
+					$("#div_stu").html("<h3 class='text-center my-5'>검색내용이 없습니다.</h3>");
 				}else{
 					const temp=Handlebars.compile($("#temp_stu").html());
 					$("#div_stu").html(temp(data));
+					if(total != data.total){
+						const totalPages = Math.ceil(data.total/size);
+                		$("#pagination").twbsPagination("changeTotalPages", totalPages, 1);
+                		total=data.total;
+					}
 				}
+				if(data.total>size) $("#pagination").show();
+				else $("#pagination").hide();
 			}
-		});
+		})	
 	}
 	
 	$('#pagination').twbsPagination({

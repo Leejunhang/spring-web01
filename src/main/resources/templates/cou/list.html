@@ -31,7 +31,7 @@
 		{{#each list}}
 		<tr>
 			<td>{{lcode}}</td>
-			<td><a href="/cou/read?lcode={{lcode}}">{{lname}}</a><td>
+			<td><a href="/cou/read?lcode={{lcode}}">{{lname}}</a></td>
 			<td>{{hours}}({{room}})</td>
 			<td>{{pname}}({{instructor}})</td>
 			<td class="text-end">{{persons}}/{{capacity}}</td>
@@ -41,52 +41,39 @@
 </script>
 <script>
 	let page=1;
-	const size=2;
-	getTotal();
+	const size=3;
+	let total=0;
+	getList();
 	
 	$(frm).on("submit", function(e){
 		e.preventDefault();
-		page=1;
-		getTotal();	
+		getList();
 	});
 	
-	function getTotal(){
-		const query=$(frm.query).val();
-		const key=$(frm.key).val();
-		$.ajax({
-			type:"get",
-			url:"/cou/list.json",
-			data:{query, key, page, size},
-			success:function(data){
-				if(data.total>size){
-					$("#pagination").show();
-					const totalPages = Math.ceil(data.total/size);
-                	$("#pagination").twbsPagination("changeTotalPages", totalPages, page)
-                }else{
-					$("#pagination").hide();
-					getList();
-				}
-			}
-		})
-	}
-	
 	function getList(){
-		const key=$(frm.key).val();
 		const query=$(frm.query).val();
+		const key=$(frm.key).val();
 		$.ajax({
-			type:"get",
+			tpye:"get",
 			url:"/cou/list.json",
-			data:{size, page, key, query},
+			data:{page, size, key, query},
 			success:function(data){
 				$("#total").html(`검색수: ${data.total}건`);
-				if(data==0) {
-					$("#div_cou").html("<h3 class='text-center my-5'>검색자료가 존재하지않습니다.</h3>");	
+				if(data.total==0){
+					$("#div_cou").html("<h3 class='text-center my-5'>검색 내용이 존재하지 않습니다.</h3>");
 				}else{
 					const temp=Handlebars.compile($("#temp_cou").html());
 					$("#div_cou").html(temp(data));
+					if(total!=data.total){
+						const totalPages = Math.ceil(data.total/size);
+						$("#pagination").twbsPagination("changeTotalPages", totalPages, 1);
+						total=data.total;
+					}
 				}
+				if(data.total>size) $("#pagination").show();
+				else  $("#pagination").hide()
 			}
-		});
+		})
 	}
 	
 	$('#pagination').twbsPagination({

@@ -26,6 +26,7 @@
 			<td>{{pname}}({{instructor}})</td>
 			<td>{{persons}}/{{capacity}}</td>
 			<td>{{grade}}</td>
+			<td><button class="btn btn-danger btn-sm" lcode="{{lcode}}">취소</button></td>
 		</tr>	
 		{{/each}}
 	</table>	
@@ -45,6 +46,22 @@
 </script>
 <script>
 	const scode = "[[${param.scode}]]";
+	
+	$("#div_enroll").on("click", ".btn-danger", function(){
+		const lcode=$(this).attr("lcode");
+		if(confirm(`${scode}학생의 ${lcode}강좌를 취소 하시겠습니까?`)){
+			$.ajax({
+				type:"get",
+				url:"/enroll/delete",
+				data:{scode, lcode},
+				success: function() {
+					alert("해당 강좌가 취소 되었습니다.");
+					getEnroll();
+				}
+			})
+		}	
+	});
+	
 	$(window).on("load", function () {
 		$.ajax({
 			type:"get",
