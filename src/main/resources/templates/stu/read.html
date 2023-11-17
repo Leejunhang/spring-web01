@@ -36,9 +36,10 @@
 			<td>{{lname}}({{lcode}})</td>
 			<td>{{hours}}({{room}})</td>
 			<td>{{pname}}({{instructor}})</td>
-			<td>{{persons}}/{{capacity}}</td>
-			<td>{{grade}}</td>
-			<td><button class="btn btn-danger btn-sm" lcode="{{lcode}}">취소</button></td>
+			<td class="text-end">{{persons}}/{{capacity}}</td>
+			<td class="text-end">{{grade}}</td>
+			<td>{{edate}}</td>
+			<td><button class="btn btn-danger btn-sm btn-delete" lcode="{{lcode}}">취소</button></td>
 		</tr>	
 		{{/each}}
 	</table>	
