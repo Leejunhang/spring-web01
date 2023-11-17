@@ -18,4 +18,9 @@ public class EnrollRestController {
 	public void delete(String lcode, String scode) {
 		service.delete(scode, lcode);
 	}
+	
+	@GetMapping("/insert")
+	public void insert(String lcode, String scode) {
+		service.insert(scode, lcode);
+	}
 }

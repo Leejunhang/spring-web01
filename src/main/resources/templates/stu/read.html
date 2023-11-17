@@ -13,10 +13,22 @@
 		<div id="div_stu" class="row justify-content-center mt-5"></div>
 	</div>
 	<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+			<div id="div_cou" class="card p-3 mt-5"></div>
 			<div id="div_enroll" class="mt-5"></div>
 		</div>
 	</div>
 </div>
+<script id="temp_cou" type="x-handlebars-template">
+	<div class="input-group">
+	<select class="form-select" id="lcode">
+		{{#each list}}
+			<option value="{{lcode}}">{{lname}}({{pname}}) {{persons}}/{{capacity}}</option>
+		{{/each}}
+	</select>
+	<button class="btn btn-primary btn-insert">수강신청</button>
+	<div>	
+</script>
+
 <script id="temp_enroll" type="x-handlebars-template">
 	<table class="table">
 		{{#each .}}
@@ -46,6 +58,36 @@
 </script>
 <script>
 	const scode = "[[${param.scode}]]";
+	$("#nav-profile-tab").click();
+	
+	$("#div_cou").on("click", ".btn-insert", function(){
+		const lcode=$("#lcode").val();
+		if(confirm(`${scode}학생이 ${lcode}강좌를 수강신청 하실래요?`)){
+			$.ajax({
+				type:"get",
+				url:"/enroll/insert",
+				data:{scode, lcode},
+				success:function(){
+					alert("수강신청 완료!");
+					getCou();
+					getEnroll();					
+				}
+			})
+		}
+	});
+	
+	getCou();
+	function getCou(){
+		$.ajax({
+			type:"get",
+			url:"/cou/list.json",
+			data:{page:1,size:100,key:"lcode",query:""},
+			success:function(data){
+				const temp=Handlebars.compile($("#temp_cou").html());
+				$("#div_cou").html(temp(data));
+			}
+		})
+	}
 	
 	$("#div_enroll").on("click", ".btn-danger", function(){
 		const lcode=$(this).attr("lcode");
