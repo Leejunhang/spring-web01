@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 @RequestMapping("/posts")
 public class PostController {
@@ -15,7 +14,7 @@ public class PostController {
 		model.addAttribute("pageName", "posts/list");
 		return "home";
 	}
-	
+
 	@GetMapping("/read")
 	public String read(Model model, int pid) {
 		model.addAttribute("pid", pid);
@@ -34,5 +33,5 @@ public class PostController {
 		model.addAttribute("pid", pid);
 		model.addAttribute("pageName", "posts/update");
 		return "home";
-	}	
+	}
 }

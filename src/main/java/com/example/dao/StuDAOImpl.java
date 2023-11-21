@@ -35,5 +35,7 @@ public class StuDAOImpl implements StuDAO{
 	public List<HashMap<String, Object>> enroll(String scode) {
 		return session.selectList(namespace + ".enroll", scode);
 	}
-
 }
+
+
+

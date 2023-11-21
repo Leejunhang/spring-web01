@@ -69,14 +69,14 @@
 		$("#btn-write, #div-write").toggle();	
 	}
 	
-	//수정버튼 클릭 시
+	//수정버튼 클릭시
 	$("#div_comments").on("click", ".btn-update", function(){
-			const row=$(this).parent().parent().parent();
-			row.find(".view").hide();
-			row.find(".edit").show();
+		const row=$(this).parent().parent().parent();
+		row.find(".view").hide();
+		row.find(".edit").show();
 	});
 	
-	//취소버튼 클릭 시
+	//취소버튼 클릭시
 	$("#div_comments").on("click", ".btn-cancel", function(){
 		const row=$(this).parent().parent().parent();
 		row.find(".view").show();
@@ -88,7 +88,7 @@
 		const row=$(this).parent().parent().parent();
 		const body=row.find(".body").val();
 		const cid=$(this).attr("cid");
-		if(confirm(`${cid}번 댓글 내용을 수정 하실래요?`)){
+		if(confirm(`${cid}번 댓글 내용을 수정하실래요?`)){
 			//alert(body);
 			//댓글수정
 			$.ajax({
@@ -156,16 +156,17 @@
 			url:"/comments/total",
 			data:{pid:post_id},
 			success:function(data){
-			if(data>size){
-				const totalPages = Math.ceil(data/size);
-            	$("#pagination").twbsPagination("changeTotalPages", totalPages, page);		
-			}else{
-				getComments();
-				$("#pagination").hide();
+				if(data>size){
+					$("#pagination").show();
+					const totalPages = Math.ceil(data/size);
+	            	$("#pagination").twbsPagination("changeTotalPages", totalPages, page);
+	            }else{
+					getComments();
+					$("#pagination").hide();
+				}		
 			}
-		}
-	})
-}
+		})
+	}
 	
 	function getComments(){
 		$.ajax({

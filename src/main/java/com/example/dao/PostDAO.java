@@ -12,5 +12,5 @@ public interface PostDAO {
 	public List<HashMap<String,Object>> list1(int page, int size, String key, String query);
 	public int total(String key, String query);
 	public void viewcnt(int pid);
-	public void comcnt(int pid, int cnt);
+	public void commcnt(int pid, int cnt);
 }

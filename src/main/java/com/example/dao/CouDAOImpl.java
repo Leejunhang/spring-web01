@@ -14,25 +14,31 @@ public class CouDAOImpl implements CouDAO{
 	@Autowired
 	SqlSession session;
 	String namespace="com.example.mapper.CourseMapper";
+	
 	@Override
 	public List<HashMap<String, Object>> list(QueryVO vo) {
 		vo.setStart((vo.getPage()-1) * vo.getSize());
 		return session.selectList(namespace + ".list", vo);
 	}
-	
+
 	@Override
 	public int total(QueryVO vo) {
-		return session.selectOne(namespace + ".total", vo);
+		return session.selectOne(namespace + ".total", vo); 
 	}
-	
+
 	@Override
 	public HashMap<String, Object> read(String lcode) {
 		return session.selectOne(namespace + ".read", lcode);
 	}
-	
+
 	@Override
 	public List<HashMap<String, Object>> enroll(String lcode) {
 		return session.selectList(namespace + ".enroll", lcode);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> graph() {
+		return session.selectList(namespace + ".graph");
 	}
 
 }

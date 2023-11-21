@@ -52,7 +52,6 @@ public class ProRestController {
 		return map;
 	}
 	
-	
 	@GetMapping("/read.json")
 	public HashMap<String,Object> read(String pcode){
 		return dao.read(pcode);
@@ -63,8 +62,16 @@ public class ProRestController {
 		return dao.code();
 	}
 	
+	
 	@GetMapping("/total")
 	public int total(QueryVO vo) {
 		return dao.total(vo);
 	}
 }
+
+
+
+
+
+
+

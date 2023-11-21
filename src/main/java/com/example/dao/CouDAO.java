@@ -1,6 +1,5 @@
 package com.example.dao;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import com.example.domain.*;
 
 public interface CouDAO {
@@ -8,4 +7,5 @@ public interface CouDAO {
 	public int total(QueryVO vo);
 	public HashMap<String,Object> read(String lcode);
 	public List<HashMap<String,Object>> enroll(String lcode);
+	public List<HashMap<String,Object>> graph();
 }

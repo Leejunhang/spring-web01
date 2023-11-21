@@ -51,6 +51,4 @@ public class ProVO {
 		return "ProVO [pcode=" + pcode + ", pname=" + pname + ", dept=" + dept + ", hiredate=" + hiredate + ", title="
 				+ title + ", salary=" + salary + "]";
 	}
-	
-	
 }

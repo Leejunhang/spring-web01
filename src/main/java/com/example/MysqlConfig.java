@@ -13,8 +13,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;@Configuration
+
+@Configuration
 @PropertySource("classpath:/application.properties")
 public class MysqlConfig {
     @Bean
@@ -46,6 +46,6 @@ public class MysqlConfig {
     
     @Bean
     public DataSourceTransactionManager txManager(DataSource dataSource) {
-    	return new DataSourceTransactionManager(dataSource); }
-
+    	return new DataSourceTransactionManager(dataSource); 
+    }
 }

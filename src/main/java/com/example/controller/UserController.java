@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/users")
-public class UserController {	
+public class UserController {
+	@GetMapping("/insert")
+	public String insert(Model model) {
+		model.addAttribute("pageName", "users/insert.html");
+		return "home";
+	}
 	
 	@GetMapping("/login")
 	public String login(Model model) {
@@ -16,7 +21,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/mypage")
-	public String mpypage(Model model) {
+	public String mypage(Model model) {
 		model.addAttribute("pageName", "users/mypage.html");
 		return "home";
 	}
@@ -32,11 +37,4 @@ public class UserController {
 		model.addAttribute("pageName", "users/password.html");
 		return "home";
 	}
-	
-	@GetMapping("/insert")
-	public String insert(Model model) {
-		model.addAttribute("pageName", "users/insert.html");
-		return "home";
-	}
 }
-

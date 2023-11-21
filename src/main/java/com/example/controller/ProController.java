@@ -12,14 +12,14 @@ public class ProController {
 	public String list(Model model) {
 		model.addAttribute("pageName", "pro/list");
 		return "home";
-		
 	}
 	
 	@GetMapping("/insert")
 	public String insert(Model model) {
 		model.addAttribute("pageName", "pro/insert");
-		return "home.html";
-}
+		return "home";
+	}
+	
 	@GetMapping("/read")
 	public String read(Model model) {
 		model.addAttribute("pageName", "pro/read");

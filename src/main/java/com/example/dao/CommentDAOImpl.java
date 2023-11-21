@@ -42,7 +42,6 @@ public class CommentDAOImpl implements CommentDAO{
 	@Override
 	public void update(CommentVO vo) {
 		session.update(namespace + ".update", vo);
-		
 	}
 
 	@Override

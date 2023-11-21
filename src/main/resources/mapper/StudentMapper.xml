@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.StudentMapper">
 	<select id="enroll" resultType="hashmap">
-		select *
+		select * 
 		from stu_enroll
 		where scode=#{scode}
 	</select>
@@ -12,36 +12,37 @@
 		where scode=#{scode}
 	</select>
     <select id="total" resultType="int">
-        select count(*)
-        from view_stu
-        <if test="key=='scode'">
-        	where scode like concat('%', #{query}, '%')
-        </if>
-        <if test="key=='sname'">
-        	where sname like concat('%', #{query}, '%')
-        </if>
-        <if test="key=='dept'">
-        	where dept like concat('%', #{query}, '%')
-        </if>
-        <if test="key=='pname'">
-        	where pname like concat('%', #{query}, '%')
-        </if>
+		select count(*)
+		from view_stu
+		<if test="key=='scode'">
+			where scode like concat('%', #{query}, '%')
+		</if>
+		<if test="key=='sname'">
+			where sname like concat('%', #{query}, '%')
+		</if>
+		<if test="key=='dept'">
+			where dept like concat('%', #{query}, '%')
+		</if>
+		<if test="key=='pname'">
+			where pname like concat('%', #{query}, '%')
+		</if>
     </select>
+    
     <select id="list" resultType="hashmap">
-        select *
-        from view_stu
-        <if test="key=='scode'">
-        	where scode like concat('%', #{query}, '%')
-        </if>
-        <if test="key=='sname'">
-        	where sname like concat('%', #{query}, '%')
-        </if>
-        <if test="key=='dept'">
-        	where dept like concat('%', #{query}, '%')
-        </if>
-        <if test="key=='pname'">
-        	where pname like concat('%', #{query}, '%')
-        </if>
-        limit #{start}, #{size}
+		select *
+		from view_stu
+		<if test="key=='scode'">
+			where scode like concat('%', #{query}, '%')
+		</if>
+		<if test="key=='sname'">
+			where sname like concat('%', #{query}, '%')
+		</if>
+		<if test="key=='dept'">
+			where dept like concat('%', #{query}, '%')
+		</if>
+		<if test="key=='pname'">
+			where pname like concat('%', #{query}, '%')
+		</if>
+		limit #{start}, #{size}
     </select>
 </mapper>

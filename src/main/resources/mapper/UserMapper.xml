@@ -13,7 +13,7 @@
 	<update id="photo">
 		update users
 		set photo=#{photo}
-		where uid=#{uid}
+		where uid=#{uid} 
 	</update>
 	<update id="update">
 		update users

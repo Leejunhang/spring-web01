@@ -62,3 +62,9 @@ public class ProDAOImpl implements ProDAO{
 		return session.selectOne(namespace + ".total", vo);
 	}
 }
+
+
+
+
+
+

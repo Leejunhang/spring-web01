@@ -36,12 +36,10 @@ public class QueryVO {
 	}
 	public void setSize(int size) {
 		this.size = size;
-		
-		
 	}
+	
 	@Override
 	public String toString() {
-		return "QueryVO [key=" + key + ", query=" + query + ", page=" + page + ", size=" + size + ", start=" + start
-				+ "]";
+		return "QueryVO [key=" + key + ", query=" + query + ", page=" + page + ", size=" + size + "]";
 	}
 }

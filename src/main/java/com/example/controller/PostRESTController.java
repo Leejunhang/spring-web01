@@ -33,6 +33,7 @@ public class PostRESTController {
 	
 	@GetMapping("/list1.json") //http://localhost:8080/posts/list1.json?page=1&size=5
 	public List<HashMap<String,Object>> list1(int page, int size, String key, String query){
+		System.out.println("key................" + key);
 		return dao.list1(page, size, key, query);
 	}
 	
@@ -59,3 +60,12 @@ public class PostRESTController {
 		dao.update(vo);
 	}
 }
+
+
+
+
+
+
+
+
+

@@ -57,18 +57,24 @@ public class PostDAOImpl implements PostDAO{
 		map.put("query", query);
 		return session.selectOne(namespace + ".total", map);
 	}
-
+	
 	@Override
 	public void viewcnt(int pid) {
 		session.update(namespace + ".viewcnt", pid);
 	}
 
 	@Override
-	public void comcnt(int pid, int cnt) {
+	public void commcnt(int pid, int cnt) {
 		HashMap<String,Object> map=new HashMap<>();
 		map.put("pid", pid);
 		map.put("cnt", cnt);
-		session.update(namespace + ".comcnt", map);
-		
+		session.update(namespace + ".commcnt", map);
 	}
 }
+
+
+
+
+
+
+
